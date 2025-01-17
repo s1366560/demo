@@ -15,7 +15,7 @@ public class SnowflakeTransactionIdGenerationServiceImpl implements TransactionI
 
     @Autowired
     public SnowflakeTransactionIdGenerationServiceImpl(IdGeneratorConfig config) {
-        this.idUtil = IdUtil.getSnowflake(config.getDataCenterId(),config.getWorkerId());
+        this.idUtil = IdUtil.getSnowflake(config.getDataCenterId(), config.getWorkerId());
     }
 
     @Override

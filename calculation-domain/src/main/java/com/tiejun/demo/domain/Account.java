@@ -2,7 +2,6 @@ package com.tiejun.demo.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
 import java.util.Date;
 
 public class Account implements Serializable {
@@ -17,7 +16,8 @@ public class Account implements Serializable {
 
     private Date updateTime;
 
-    public Account() {}
+    public Account() {
+    }
 
     public Account(String accountNumber, BigDecimal balance) {
         this.accountNumber = accountNumber;

@@ -56,7 +56,7 @@ class AccountServiceTest {
         String accountNumber = "123456";
         BigDecimal initialBalance = new BigDecimal("1000.00");
         Account newAccount = new Account(accountNumber, initialBalance);
-        when(accountMapper.insert(accountNumber,initialBalance)).thenReturn(1);
+        when(accountMapper.insert(accountNumber, initialBalance)).thenReturn(1);
         when(accountMapper.selectByAccount(accountNumber)).thenReturn(newAccount);
 
         // when
@@ -64,7 +64,7 @@ class AccountServiceTest {
 
         // then
         assertThat(createdAccount)
-            .isEqualTo(newAccount);
+                .isEqualTo(newAccount);
     }
 
     @Test
@@ -94,7 +94,7 @@ class AccountServiceTest {
 
         // when & then
         assertThrows(BizException.class,
-            () -> accountService.updateAccountBalance(accountNumber, newBalance));
+                () -> accountService.updateAccountBalance(accountNumber, newBalance));
         verify(accountMapper).selectByAccount(accountNumber);
         verify(accountMapper, never()).updateByPrimaryKey(any(Account.class));
     }

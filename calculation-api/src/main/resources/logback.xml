@@ -8,6 +8,6 @@
 
     <!-- 定义日志级别为 INFO 的日志输出 -->
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

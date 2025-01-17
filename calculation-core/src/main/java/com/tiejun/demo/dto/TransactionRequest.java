@@ -3,7 +3,7 @@ package com.tiejun.demo.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class TransactionRequestDto implements Serializable {
+public class TransactionRequest implements Serializable {
     private String sourceAccountNumber;
     private String targetAccountNumber;
     private BigDecimal amount;

@@ -1,198 +1,197 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tiejun.demo.mapper.TransactionRecordsMapper">
-  <resultMap id="BaseResultMap" type="com.tiejun.demo.domain.TransactionRecord">
-    <!--@mbg.generated-->
-    <!--@Table transaction_records-->
-    <id column="transaction_id" jdbcType="BIGINT" property="transactionId" />
-    <result column="transaction_time" jdbcType="TIMESTAMP" property="transactionTime" />
-    <result column="transaction_type" jdbcType="VARCHAR" property="transactionType" />
-    <result column="source_account_id" jdbcType="BIGINT" property="sourceAccountId" />
-    <result column="target_account_id" jdbcType="BIGINT" property="targetAccountId" />
-    <result column="amount" jdbcType="DECIMAL" property="amount" />
-    <result column="currency" jdbcType="VARCHAR" property="currency" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="channel" jdbcType="VARCHAR" property="channel" />
-    <result column="transaction_fee" jdbcType="DECIMAL" property="transactionFee" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    transaction_id, transaction_time, transaction_type, source_account_id, target_account_id, 
-    amount, currency, `status`, description, channel, transaction_fee, create_time, update_time
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from transaction_records
-    where transaction_id = #{transactionId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from transaction_records
-    where transaction_id = #{transactionId,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.tiejun.demo.domain.TransactionRecord">
-    <!--@mbg.generated-->
-    insert into transaction_records (transaction_id, transaction_time, 
-      transaction_type, source_account_id, target_account_id, 
-      amount, currency, `status`, 
-      description, channel, transaction_fee, 
-      create_time, update_time)
-    values (#{transactionId,jdbcType=BIGINT}, #{transactionTime,jdbcType=TIMESTAMP}, 
-      #{transactionType,jdbcType=VARCHAR}, #{sourceAccountId,jdbcType=BIGINT}, #{targetAccountId,jdbcType=BIGINT}, 
-      #{amount,jdbcType=DECIMAL}, #{currency,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{transactionFee,jdbcType=DECIMAL}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.tiejun.demo.domain.TransactionRecord">
-    <!--@mbg.generated-->
-    insert into transaction_records
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="transactionId != null">
-        transaction_id,
-      </if>
-      <if test="transactionTime != null">
-        transaction_time,
-      </if>
-      <if test="transactionType != null">
-        transaction_type,
-      </if>
-      <if test="sourceAccountId != null">
-        source_account_id,
-      </if>
-      <if test="targetAccountId != null">
-        target_account_id,
-      </if>
-      <if test="amount != null">
-        amount,
-      </if>
-      <if test="currency != null">
-        currency,
-      </if>
-      <if test="status != null">
-        `status`,
-      </if>
-      <if test="description != null">
-        description,
-      </if>
-      <if test="channel != null">
-        channel,
-      </if>
-      <if test="transactionFee != null">
-        transaction_fee,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="transactionId != null">
-        #{transactionId,jdbcType=BIGINT},
-      </if>
-      <if test="transactionTime != null">
-        #{transactionTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="transactionType != null">
-        #{transactionType,jdbcType=VARCHAR},
-      </if>
-      <if test="sourceAccountId != null">
-        #{sourceAccountId,jdbcType=BIGINT},
-      </if>
-      <if test="targetAccountId != null">
-        #{targetAccountId,jdbcType=BIGINT},
-      </if>
-      <if test="amount != null">
-        #{amount,jdbcType=DECIMAL},
-      </if>
-      <if test="currency != null">
-        #{currency,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="channel != null">
-        #{channel,jdbcType=VARCHAR},
-      </if>
-      <if test="transactionFee != null">
-        #{transactionFee,jdbcType=DECIMAL},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tiejun.demo.domain.TransactionRecord">
-    <!--@mbg.generated-->
-    update transaction_records
-    <set>
-      <if test="transactionTime != null">
-        transaction_time = #{transactionTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="transactionType != null">
+    <resultMap id="BaseResultMap" type="com.tiejun.demo.domain.TransactionRecord">
+        <!--@mbg.generated-->
+        <!--@Table transaction_records-->
+        <id column="transaction_id" jdbcType="BIGINT" property="transactionId"/>
+        <result column="transaction_time" jdbcType="TIMESTAMP" property="transactionTime"/>
+        <result column="transaction_type" jdbcType="VARCHAR" property="transactionType"/>
+        <result column="source_account_id" jdbcType="BIGINT" property="sourceAccountId"/>
+        <result column="target_account_id" jdbcType="BIGINT" property="targetAccountId"/>
+        <result column="amount" jdbcType="DECIMAL" property="amount"/>
+        <result column="currency" jdbcType="VARCHAR" property="currency"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="channel" jdbcType="VARCHAR" property="channel"/>
+        <result column="transaction_fee" jdbcType="DECIMAL" property="transactionFee"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        transaction_id, transaction_time, transaction_type, source_account_id, target_account_id,
+        amount, currency, `status`, description, channel, transaction_fee, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from transaction_records
+        where transaction_id = #{transactionId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from transaction_records
+        where transaction_id = #{transactionId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.tiejun.demo.domain.TransactionRecord">
+        <!--@mbg.generated-->
+        insert into transaction_records (transaction_id, transaction_time,
+        transaction_type, source_account_id, target_account_id,
+        amount, currency, `status`,
+        description, channel, transaction_fee,
+        create_time, update_time)
+        values (#{transactionId,jdbcType=BIGINT}, #{transactionTime,jdbcType=TIMESTAMP},
+        #{transactionType,jdbcType=VARCHAR}, #{sourceAccountId,jdbcType=BIGINT}, #{targetAccountId,jdbcType=BIGINT},
+        #{amount,jdbcType=DECIMAL}, #{currency,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{transactionFee,jdbcType=DECIMAL},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.tiejun.demo.domain.TransactionRecord">
+        <!--@mbg.generated-->
+        insert into transaction_records
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="transactionId != null">
+                transaction_id,
+            </if>
+            <if test="transactionTime != null">
+                transaction_time,
+            </if>
+            <if test="transactionType != null">
+                transaction_type,
+            </if>
+            <if test="sourceAccountId != null">
+                source_account_id,
+            </if>
+            <if test="targetAccountId != null">
+                target_account_id,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="currency != null">
+                currency,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="channel != null">
+                channel,
+            </if>
+            <if test="transactionFee != null">
+                transaction_fee,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="transactionId != null">
+                #{transactionId,jdbcType=BIGINT},
+            </if>
+            <if test="transactionTime != null">
+                #{transactionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transactionType != null">
+                #{transactionType,jdbcType=VARCHAR},
+            </if>
+            <if test="sourceAccountId != null">
+                #{sourceAccountId,jdbcType=BIGINT},
+            </if>
+            <if test="targetAccountId != null">
+                #{targetAccountId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="currency != null">
+                #{currency,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="channel != null">
+                #{channel,jdbcType=VARCHAR},
+            </if>
+            <if test="transactionFee != null">
+                #{transactionFee,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tiejun.demo.domain.TransactionRecord">
+        <!--@mbg.generated-->
+        update transaction_records
+        <set>
+            <if test="transactionTime != null">
+                transaction_time = #{transactionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transactionType != null">
+                transaction_type = #{transactionType,jdbcType=VARCHAR},
+            </if>
+            <if test="sourceAccountId != null">
+                source_account_id = #{sourceAccountId,jdbcType=BIGINT},
+            </if>
+            <if test="targetAccountId != null">
+                target_account_id = #{targetAccountId,jdbcType=BIGINT},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="currency != null">
+                currency = #{currency,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="channel != null">
+                channel = #{channel,jdbcType=VARCHAR},
+            </if>
+            <if test="transactionFee != null">
+                transaction_fee = #{transactionFee,jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where transaction_id = #{transactionId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.tiejun.demo.domain.TransactionRecord">
+        <!--@mbg.generated-->
+        update transaction_records
+        set transaction_time = #{transactionTime,jdbcType=TIMESTAMP},
         transaction_type = #{transactionType,jdbcType=VARCHAR},
-      </if>
-      <if test="sourceAccountId != null">
         source_account_id = #{sourceAccountId,jdbcType=BIGINT},
-      </if>
-      <if test="targetAccountId != null">
         target_account_id = #{targetAccountId,jdbcType=BIGINT},
-      </if>
-      <if test="amount != null">
         amount = #{amount,jdbcType=DECIMAL},
-      </if>
-      <if test="currency != null">
         currency = #{currency,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
         `status` = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="channel != null">
         channel = #{channel,jdbcType=VARCHAR},
-      </if>
-      <if test="transactionFee != null">
         transaction_fee = #{transactionFee,jdbcType=DECIMAL},
-      </if>
-      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where transaction_id = #{transactionId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tiejun.demo.domain.TransactionRecord">
-    <!--@mbg.generated-->
-    update transaction_records
-    set transaction_time = #{transactionTime,jdbcType=TIMESTAMP},
-      transaction_type = #{transactionType,jdbcType=VARCHAR},
-      source_account_id = #{sourceAccountId,jdbcType=BIGINT},
-      target_account_id = #{targetAccountId,jdbcType=BIGINT},
-      amount = #{amount,jdbcType=DECIMAL},
-      currency = #{currency,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      channel = #{channel,jdbcType=VARCHAR},
-      transaction_fee = #{transactionFee,jdbcType=DECIMAL},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where transaction_id = #{transactionId,jdbcType=BIGINT}
-  </update>
-
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where transaction_id = #{transactionId,jdbcType=BIGINT}
+    </update>
 </mapper>

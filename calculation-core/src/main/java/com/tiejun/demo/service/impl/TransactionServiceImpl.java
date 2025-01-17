@@ -4,8 +4,6 @@ import com.tiejun.demo.contsants.ErrorCode;
 import com.tiejun.demo.domain.Account;
 import com.tiejun.demo.domain.TransactionRecord;
 import com.tiejun.demo.domain.TransactionStatus;
-import com.tiejun.demo.dto.TransactionRequestDto;
-import com.tiejun.demo.dto.TransactionResult;
 import com.tiejun.demo.exception.BizException;
 import com.tiejun.demo.mapper.TransactionRecordsMapper;
 import com.tiejun.demo.service.AccountService;
@@ -36,13 +34,13 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public TransactionRecord process(Long transactionId) {
 
-        if(transactionId == null) {
+        if (transactionId == null) {
             throw new IllegalArgumentException("transactionId is null");
         }
 
         TransactionRecord transactionRecord = transactionRecordsMapper.selectByPrimaryKey(transactionId);
 
-        if(transactionRecord == null) {
+        if (transactionRecord == null) {
             throw new BizException(ErrorCode.TRANSACTION_NOT_EXIST);
         }
 
@@ -77,10 +75,10 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionRecord create(TransactionRecord transactionRecord) {
-       int result = transactionRecordsMapper.insert(transactionRecord);
-       if (result != 1) {
-           throw new BizException(ErrorCode.TRANSACTION_CREATE_ERROR);
-       }
-       return transactionRecord;
+        int result = transactionRecordsMapper.insert(transactionRecord);
+        if (result != 1) {
+            throw new BizException(ErrorCode.TRANSACTION_CREATE_ERROR);
+        }
+        return transactionRecord;
     }
 }

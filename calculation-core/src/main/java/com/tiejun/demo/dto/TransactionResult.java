@@ -1,17 +1,16 @@
 package com.tiejun.demo.dto;
 
 import com.tiejun.demo.domain.TransactionStatus;
-import com.tiejun.demo.domain.TransactionType;
 
 import java.io.Serializable;
 
 public class TransactionResult implements Serializable {
 
     private String transactionId;
-    private TransactionType transactionType;
     private String transactionAmount;
     private String transactionDate;
     private TransactionStatus transactionStatus;
+    private String errorMessage;
 
     public String getTransactionId() {
         return transactionId;
@@ -19,14 +18,6 @@ public class TransactionResult implements Serializable {
 
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public TransactionType getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(TransactionType transactionType) {
-        this.transactionType = transactionType;
     }
 
     public String getTransactionAmount() {
@@ -51,5 +42,13 @@ public class TransactionResult implements Serializable {
 
     public void setTransactionStatus(TransactionStatus transactionStatus) {
         this.transactionStatus = transactionStatus;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

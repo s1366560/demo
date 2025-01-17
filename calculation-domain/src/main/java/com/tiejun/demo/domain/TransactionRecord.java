@@ -2,13 +2,13 @@ package com.tiejun.demo.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class TransactionRecord implements Serializable {
 
     private Long transactionId;
 
-    private Date transactionTime;
+    private LocalDateTime transactionTime;
 
     private Long sourceAccountId;
 
@@ -18,9 +18,9 @@ public class TransactionRecord implements Serializable {
 
     private TransactionStatus status;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     public Long getTransactionId() {
         return transactionId;
@@ -30,11 +30,11 @@ public class TransactionRecord implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public Date getTransactionTime() {
+    public LocalDateTime getTransactionTime() {
         return transactionTime;
     }
 
-    public void setTransactionTime(Date transactionTime) {
+    public void setTransactionTime(LocalDateTime transactionTime) {
         this.transactionTime = transactionTime;
     }
 
@@ -70,19 +70,19 @@ public class TransactionRecord implements Serializable {
         this.status = status;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 }

@@ -1,14 +1,14 @@
 package com.tiejun.demo.controller;
 
-import com.tiejun.demo.common.Result;
-import com.tiejun.demo.common.ResultCode;
 import com.tiejun.demo.domain.Account;
 import com.tiejun.demo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/api/accounts")
 public class AccountController {
     private final AccountService accountService;
 
@@ -17,15 +17,22 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/{account}")
-    public Result<Account> getAccount(@PathVariable String account) {
-        Account data = accountService.findByAccount(account);
-        return data == null ? Result.error(ResultCode.NOT_FOUND) : Result.success(data);
+    @GetMapping("/{accountNumber}")
+    public ResponseEntity<Account> getAccount(@PathVariable String accountNumber) {
+        Account data = accountService.findByAccount(accountNumber);
+        return data == null
+                ? ResponseEntity.notFound().build()
+                : ResponseEntity.ok(data);
     }
 
     @PostMapping
-    public Result<Account> createAccount(@RequestBody Account account) {
-        return Result.success(accountService.createAccount(account.getAccountNumber(), account.getBalance()));
+    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
+        Account createdAccount = accountService.createAccount(
+                account.getAccountNumber(),
+                account.getBalance()
+        );
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(createdAccount);
     }
-
 }

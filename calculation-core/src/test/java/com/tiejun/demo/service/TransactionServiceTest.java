@@ -3,22 +3,17 @@ package com.tiejun.demo.service;
 import com.tiejun.demo.domain.Account;
 import com.tiejun.demo.domain.TransactionRecord;
 import com.tiejun.demo.domain.TransactionStatus;
-import com.tiejun.demo.domain.TransactionType;
-import com.tiejun.demo.dto.TransactionRequestDto;
-import com.tiejun.demo.dto.TransactionResult;
 import com.tiejun.demo.mapper.TransactionRecordsMapper;
 import com.tiejun.demo.service.impl.TransactionServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TransactionServiceTest {
 
@@ -49,9 +44,9 @@ class TransactionServiceTest {
         transaction.setTransactionId(transactionIdGenerationService.generateTransactionId());
 
         when(accountService.findById(1L))
-                .thenReturn(new Account(1L,"ACC01",BigDecimal.valueOf(100)));
+                .thenReturn(new Account(1L, "ACC01", BigDecimal.valueOf(100)));
         when(accountService.findById(2L))
-                .thenReturn(new Account(2L,"ACC02",BigDecimal.valueOf(0)));
+                .thenReturn(new Account(2L, "ACC02", BigDecimal.valueOf(0)));
 
         when(transactionIdGenerationService.generateTransactionId()).thenReturn(1L);
         when(transactionRecordMapper.selectByPrimaryKey(transaction.getTransactionId())).thenReturn(transaction);
