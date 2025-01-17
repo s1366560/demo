@@ -4,8 +4,6 @@ services:
     build:
       context: calculation-api/
       dockerfile: Dockerfile
-      tags:
-        - dev
   mysql:
     image: mysql:latest
     container_name: mysql-container
