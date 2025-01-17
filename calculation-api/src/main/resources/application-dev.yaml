@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/calculation_db
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:Jye1n8LQ20mWJeCO}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+demo:
+  id-generator:
+    worker-id: ${WORKER_ID:1}
+    data-center-id: ${DATA_CENTER_ID:1}

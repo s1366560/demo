@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tiejun.demo.mapper.AccountMapper">
+    <resultMap id="BaseResultMap" type="com.tiejun.demo.domain.Account">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="account_number" jdbcType="VARCHAR" property="accountNumber"/>
+        <result column="balance" jdbcType="DECIMAL" property="balance"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, account_number, balance, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from account
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from account
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tiejun.demo.domain.Account"
+            useGeneratedKeys="true">
+        insert into account (account_number, balance)
+        values (#{accountNumber,jdbcType=VARCHAR}, #{balance,jdbcType=DECIMAL})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tiejun.demo.domain.Account"
+            useGeneratedKeys="true">
+        insert into account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="record.accountNumber != null">
+                account_number,
+            </if>
+            <if test="record.balance != null">
+                balance
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="record.accountNumber != null">
+                #{record.accountNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.balance != null">
+                #{record.balance,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.tiejun.demo.domain.Account">
+        update account
+        <set>
+            <if test="record.accountNumber != null">
+                account_number = #{record.accountNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="record.balance != null">
+                balance = #{record.balance,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where id = #{record.id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.tiejun.demo.domain.Account">
+        update account
+        set account_number = #{record.accountNumber,jdbcType=VARCHAR},
+            balance        = #{record.balance,jdbcType=DECIMAL}
+        where id = #{record.id,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectByAccount" resultType="com.tiejun.demo.domain.Account" resultMap="BaseResultMap">
+        select id, account_number, balance, create_time, update_time
+        from account
+        where account_number = #{account}
+    </select>
+</mapper>
