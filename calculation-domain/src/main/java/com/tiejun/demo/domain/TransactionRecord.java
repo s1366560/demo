@@ -10,23 +10,13 @@ public class TransactionRecord implements Serializable {
 
     private Date transactionTime;
 
-    private String transactionType;
-
     private Long sourceAccountId;
 
     private Long targetAccountId;
 
     private BigDecimal amount;
 
-    private String currency;
-
-    private String status;
-
-    private String description;
-
-    private String channel;
-
-    private BigDecimal transactionFee;
+    private TransactionStatus status;
 
     private Date createTime;
 
@@ -46,14 +36,6 @@ public class TransactionRecord implements Serializable {
 
     public void setTransactionTime(Date transactionTime) {
         this.transactionTime = transactionTime;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
     }
 
     public Long getSourceAccountId() {
@@ -80,44 +62,12 @@ public class TransactionRecord implements Serializable {
         this.amount = amount;
     }
 
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getStatus() {
+    public TransactionStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TransactionStatus status) {
         this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
-
-    public BigDecimal getTransactionFee() {
-        return transactionFee;
-    }
-
-    public void setTransactionFee(BigDecimal transactionFee) {
-        this.transactionFee = transactionFee;
     }
 
     public Date getCreateTime() {

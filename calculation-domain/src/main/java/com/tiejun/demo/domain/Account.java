@@ -17,6 +17,21 @@ public class Account implements Serializable {
 
     private Date updateTime;
 
+    public Account() {}
+
+    public Account(String accountNumber, BigDecimal balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public Account(Long id, String accountNumber, BigDecimal balance) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
+
     public Long getId() {
         return id;
     }

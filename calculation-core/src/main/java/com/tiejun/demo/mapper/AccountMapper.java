@@ -11,7 +11,7 @@ public interface AccountMapper {
 
     Account selectByAccount(@Param("account") String account);
 
-    Account insert(@Param("accountNumber") String accountNumber, @Param("balance") BigDecimal balance);
+    int insert(@Param("accountNumber") String accountNumber, @Param("balance") BigDecimal balance);
 
     int deleteByPrimaryKey(@Param("id") Long id);
 

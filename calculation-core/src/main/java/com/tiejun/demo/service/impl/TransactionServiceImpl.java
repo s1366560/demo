@@ -3,8 +3,9 @@ package com.tiejun.demo.service.impl;
 import com.tiejun.demo.contsants.ErrorCode;
 import com.tiejun.demo.domain.Account;
 import com.tiejun.demo.domain.TransactionRecord;
+import com.tiejun.demo.domain.TransactionStatus;
 import com.tiejun.demo.dto.TransactionRequestDto;
-import com.tiejun.demo.dto.TransactionResponseDto;
+import com.tiejun.demo.dto.TransactionResult;
 import com.tiejun.demo.exception.BizException;
 import com.tiejun.demo.mapper.TransactionRecordsMapper;
 import com.tiejun.demo.service.AccountService;
@@ -33,10 +34,22 @@ public class TransactionServiceImpl implements TransactionService {
     @Transactional(rollbackFor = BizException.class)
     @Retryable(maxAttempts = 3, backoff = @Backoff(delay = 1000))
     @Override
-    public TransactionResponseDto process(TransactionRequestDto request) {
-        Account sourceAccount = accountService.findByAccount(request.getSourceAccountNumber());
-        Account targetAccount = accountService.findByAccount(request.getTargetAccountNumber());
-        BigDecimal amount = request.getAmount();
+    public TransactionRecord process(Long transactionId) {
+
+        if(transactionId == null) {
+            throw new IllegalArgumentException("transactionId is null");
+        }
+
+        TransactionRecord transactionRecord = transactionRecordsMapper.selectByPrimaryKey(transactionId);
+
+        if(transactionRecord == null) {
+            throw new BizException(ErrorCode.TRANSACTION_NOT_EXIST);
+        }
+
+        Account sourceAccount = accountService.findById(transactionRecord.getSourceAccountId());
+        Account targetAccount = accountService.findById(transactionRecord.getTargetAccountId());
+        BigDecimal amount = transactionRecord.getAmount();
+
         if (sourceAccount == null || targetAccount == null) {
             throw new BizException(ErrorCode.ACCOUNT_NOT_EXIST);
         }
@@ -46,17 +59,28 @@ public class TransactionServiceImpl implements TransactionService {
             BigDecimal newSourceBalance = sourceBalance.subtract(amount);
             BigDecimal newTargetBalance = targetAccount.getBalance().add(amount);
 
-            accountService.updateAccountBalance(sourceAccount, newSourceBalance);
-            accountService.updateAccountBalance(targetAccount, newTargetBalance);
+            accountService.updateAccountBalance(sourceAccount.getAccountNumber(), newSourceBalance);
+            accountService.updateAccountBalance(targetAccount.getAccountNumber(), newTargetBalance);
 
-            TransactionRecord transaction = new TransactionRecord();
-            transaction.setTransactionId(transaction.getTransactionId());
-            transaction.setSourceAccountId(sourceAccount.getId());
-            transaction.setTargetAccountId(targetAccount.getId());
-            transaction.setAmount(amount);
+            transactionRecord.setStatus(TransactionStatus.SUCCESS);
+            transactionRecord.setAmount(amount);
 
-            int result = transactionRecordsMapper.insert(transaction);
+            int result = transactionRecordsMapper.updateByPrimaryKey(transactionRecord);
+
+            if (result == 1) {
+                return transactionRecord;
+            }
+
         }
         return null;
+    }
+
+    @Override
+    public TransactionRecord create(TransactionRecord transactionRecord) {
+       int result = transactionRecordsMapper.insert(transactionRecord);
+       if (result != 1) {
+           throw new BizException(ErrorCode.TRANSACTION_CREATE_ERROR);
+       }
+       return transactionRecord;
     }
 }

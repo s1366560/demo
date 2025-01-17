@@ -10,5 +10,7 @@ public interface AccountService {
 
     Account createAccount(String accountNumber, BigDecimal balance);
 
-    Account updateAccountBalance(Account sourceAccount, BigDecimal newSourceBalance);
+    Account updateAccountBalance(String accountNumber, BigDecimal newSourceBalance);
+
+    Account findById(Long id);
 }

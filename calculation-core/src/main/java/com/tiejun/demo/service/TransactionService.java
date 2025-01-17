@@ -1,9 +1,12 @@
 package com.tiejun.demo.service;
 
+import com.tiejun.demo.domain.TransactionRecord;
 import com.tiejun.demo.dto.TransactionRequestDto;
-import com.tiejun.demo.dto.TransactionResponseDto;
+import com.tiejun.demo.dto.TransactionResult;
 
 public interface TransactionService {
 
-    TransactionResponseDto process(TransactionRequestDto request);
+    TransactionRecord process(Long transactionId);
+
+    TransactionRecord create(TransactionRecord transactionRecord);
 }

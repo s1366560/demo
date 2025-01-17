@@ -194,4 +194,5 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where transaction_id = #{transactionId,jdbcType=BIGINT}
   </update>
+
 </mapper>
