@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "calculation-api.fullname" . }}-test-connection"
+  labels:
+    {{- include "calculation-api.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "calculation-api.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
