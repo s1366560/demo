@@ -1,7 +1,6 @@
-create database if not exists calculation_db;
+create database if not exists test_db;
 
-use calculation_db;
-
+use test_db;
 CREATE TABLE IF NOT EXISTS account
 (
     id             BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,

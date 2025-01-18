@@ -30,7 +30,7 @@ class TransactionServiceTest {
         accountService = mock(AccountService.class);
         transactionRecordMapper = mock(TransactionRecordsMapper.class);
         transactionIdGenerationService = mock(TransactionIdGenerationService.class);
-        transactionService = new TransactionServiceImpl(transactionRecordMapper, accountService, transactionIdGenerationService);
+        transactionService = new TransactionServiceImpl(transactionRecordMapper, accountService);
     }
 
     @Test

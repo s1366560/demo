@@ -13,15 +13,7 @@ public interface AccountMapper {
 
     int insert(@Param("accountNumber") String accountNumber, @Param("balance") BigDecimal balance);
 
-    int deleteByPrimaryKey(@Param("id") Long id);
-
-    int insert(@Param("record") Account record);
-
-    int insertSelective(@Param("record") Account record);
-
     Account selectByPrimaryKey(@Param("id") Long id);
-
-    int updateByPrimaryKeySelective(@Param("record") Account record);
 
     int updateByPrimaryKey(@Param("record") Account record);
 }

@@ -15,6 +15,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(ex.getMessage(), ex);
+        }
         return new ResponseEntity<>("发生了一个错误，请联系管理员。", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

@@ -2,6 +2,7 @@ package com.tiejun.demo.controller;
 
 import com.tiejun.demo.domain.Account;
 import com.tiejun.demo.service.AccountService;
+import com.tiejun.demo.vo.AccountVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
+    public ResponseEntity<Account> createAccount(@RequestBody AccountVo account) {
         Account createdAccount = accountService.createAccount(
                 account.getAccountNumber(),
                 account.getBalance()

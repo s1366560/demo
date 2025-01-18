@@ -7,7 +7,6 @@ import com.tiejun.demo.domain.TransactionStatus;
 import com.tiejun.demo.exception.BizException;
 import com.tiejun.demo.mapper.TransactionRecordsMapper;
 import com.tiejun.demo.service.AccountService;
-import com.tiejun.demo.service.TransactionIdGenerationService;
 import com.tiejun.demo.service.TransactionService;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
@@ -15,18 +14,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRecordsMapper transactionRecordsMapper;
     private final AccountService accountService;
-    private final TransactionIdGenerationService idGenerationService;
 
-    public TransactionServiceImpl(TransactionRecordsMapper transactionRecordsMapper, AccountService accountService, TransactionIdGenerationService idGenerationService) {
+    public TransactionServiceImpl(TransactionRecordsMapper transactionRecordsMapper, AccountService accountService) {
         this.transactionRecordsMapper = transactionRecordsMapper;
         this.accountService = accountService;
-        this.idGenerationService = idGenerationService;
     }
 
     @Transactional(rollbackFor = BizException.class)
@@ -62,13 +60,15 @@ public class TransactionServiceImpl implements TransactionService {
 
             transactionRecord.setStatus(TransactionStatus.SUCCESS);
             transactionRecord.setAmount(amount);
-
+            transactionRecord.setTransactionTime(LocalDateTime.now());
             int result = transactionRecordsMapper.updateByPrimaryKey(transactionRecord);
 
             if (result == 1) {
                 return transactionRecord;
             }
 
+        } else {
+            throw new IllegalArgumentException("amount not enough");
         }
         return null;
     }
