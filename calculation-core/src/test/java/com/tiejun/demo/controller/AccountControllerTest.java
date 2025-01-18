@@ -57,6 +57,16 @@ class AccountControllerTest {
     }
 
     @Test
+    void testGetAccountNotFound() throws Exception {
+        // 准备测试数据
+        when(accountService.findByAccount(anyString())).thenReturn(null);
+
+        // 执行测试
+        mockMvc.perform(get("/api/accounts/{accountNumber}", "nonexistent"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void testCreateAccount() throws Exception {
         // 准备测试数据
         Account newAccount = new Account();
@@ -73,6 +83,33 @@ class AccountControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.accountNumber").value(newAccount.getAccountNumber()))
                 .andExpect(jsonPath("$.balance").value(newAccount.getBalance().toString()));
+    }
+
+    @Test
+    void testCreateAccountWithInvalidData() throws Exception {
+        // 准备测试数据 - 账户号为空的情况
+        Account invalidAccount = new Account();
+        invalidAccount.setBalance(new BigDecimal("50.0"));
+
+        // 执行测试
+        mockMvc.perform(post("/api/accounts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(invalidAccount)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testCreateAccountWithNegativeBalance() throws Exception {
+        // 准备测试数据 - 负余额的情况
+        Account invalidAccount = new Account();
+        invalidAccount.setAccountNumber("654321");
+        invalidAccount.setBalance(new BigDecimal("-50.0"));
+
+        // 执行测试
+        mockMvc.perform(post("/api/accounts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(invalidAccount)))
+                .andExpect(status().isBadRequest());
     }
 
 }

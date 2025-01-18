@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -28,6 +29,16 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<Account> createAccount(@RequestBody AccountVo account) {
+        // 验证账户号不能为空
+        if (account.getAccountNumber() == null || account.getAccountNumber().trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        
+        // 验证余额不能为负数
+        if (account.getBalance() == null || account.getBalance().compareTo(BigDecimal.ZERO) < 0) {
+            return ResponseEntity.badRequest().build();
+        }
+
         Account createdAccount = accountService.createAccount(
                 account.getAccountNumber(),
                 account.getBalance()

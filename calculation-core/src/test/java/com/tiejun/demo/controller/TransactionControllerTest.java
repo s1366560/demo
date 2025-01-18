@@ -108,4 +108,67 @@ class TransactionControllerTest {
         // Then
         assertTrue(response.getStatusCode().is4xxClientError());
     }
+
+    @Test
+    void transfer_WithNullSourceAccount_ShouldReturnBadRequest() {
+        // Given
+        validRequest.setSourceAccountNumber(null);
+        
+        // When
+        ResponseEntity<TransactionResult> response = transactionController.transfer(validRequest);
+        
+        // Then
+        assertTrue(response.getStatusCode().is4xxClientError());
+        assertNotNull(response.getBody());
+        assertEquals(TransactionStatus.FAILED, response.getBody().getTransactionStatus());
+        assertNotNull(response.getBody().getErrorMessage());
+    }
+
+    @Test
+    void transfer_WithNullTargetAccount_ShouldReturnBadRequest() {
+        // Given
+        validRequest.setTargetAccountNumber(null);
+        
+        // When
+        ResponseEntity<TransactionResult> response = transactionController.transfer(validRequest);
+        
+        // Then
+        assertTrue(response.getStatusCode().is4xxClientError());
+        assertNotNull(response.getBody());
+        assertEquals(TransactionStatus.FAILED, response.getBody().getTransactionStatus());
+        assertNotNull(response.getBody().getErrorMessage());
+    }
+
+    @Test
+    void transfer_WithNonExistentSourceAccount_ShouldReturnBadRequest() {
+        // Given
+        when(accountService.findByAccount("ACC001")).thenThrow(new IllegalArgumentException("账户不存在"));
+        
+        // When
+        ResponseEntity<TransactionResult> response = transactionController.transfer(validRequest);
+        
+        // Then
+        assertTrue(response.getStatusCode().is4xxClientError());
+        assertNotNull(response.getBody());
+        assertEquals(TransactionStatus.FAILED, response.getBody().getTransactionStatus());
+        assertTrue(response.getBody().getErrorMessage().contains("账户不存在"));
+    }
+
+    @Test
+    void transfer_WithSystemError_ShouldReturnInternalServerError() {
+        // Given
+        when(accountService.findByAccount("ACC001")).thenReturn(sourceAccount);
+        when(accountService.findByAccount("ACC002")).thenReturn(targetAccount);
+        when(transactionIdGenerationService.generateTransactionId()).thenReturn(1L);
+        when(transactionService.create(any(TransactionRecord.class))).thenThrow(new RuntimeException("数据库错误"));
+        
+        // When
+        ResponseEntity<TransactionResult> response = transactionController.transfer(validRequest);
+        
+        // Then
+        assertTrue(response.getStatusCode().is5xxServerError());
+        assertNotNull(response.getBody());
+        assertEquals(TransactionStatus.FAILED, response.getBody().getTransactionStatus());
+        assertTrue(response.getBody().getErrorMessage().contains("交易处理失败"));
+    }
 }
