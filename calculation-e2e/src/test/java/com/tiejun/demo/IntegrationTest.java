@@ -1,39 +1,35 @@
 package com.tiejun.demo;
 
+import com.tiejun.demo.domain.Account;
+import com.tiejun.demo.domain.TransactionStatus;
+import com.tiejun.demo.dto.TransactionRequest;
+import com.tiejun.demo.dto.TransactionResult;
 import com.tiejun.demo.vo.AccountVo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.DockerComposeContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import com.tiejun.demo.domain.Account;
-import com.tiejun.demo.dto.TransactionRequest;
-import com.tiejun.demo.dto.TransactionResult;
-import com.tiejun.demo.domain.TransactionStatus;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Testcontainers
-@SpringBootTest(
-    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    classes = TestConfig.class
-)
+@SpringBootTest(classes = {TestConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class IntegrationTest {
     private static final Logger log = LoggerFactory.getLogger(IntegrationTest.class);
@@ -48,27 +44,27 @@ public class IntegrationTest {
 
     @BeforeAll
     static void setUp() {
-        log.info("MySQL Host: {}, Port: {}", 
-            environment.getServiceHost("mysql", 3306),
-            environment.getServicePort("mysql", 3306));
-        log.info("Redis Host: {}, Port: {}", 
-            environment.getServiceHost("redis", 6379),
-            environment.getServicePort("redis", 6379));
+        log.info("MySQL Host: {}, Port: {}",
+                environment.getServiceHost("mysql", 3306),
+                environment.getServicePort("mysql", 3306));
+        log.info("Redis Host: {}, Port: {}",
+                environment.getServiceHost("redis", 6379),
+                environment.getServicePort("redis", 6379));
     }
 
     @DynamicPropertySource
     static void registerProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", 
-            () -> String.format("jdbc:mysql://%s:%d/test_db?useSSL=false&allowPublicKeyRetrieval=true",
-                environment.getServiceHost("mysql", 3306),
-                environment.getServicePort("mysql", 3306)));
+        registry.add("spring.datasource.url",
+                () -> String.format("jdbc:mysql://%s:%d/test_db?useSSL=false&allowPublicKeyRetrieval=true",
+                        environment.getServiceHost("mysql", 3306),
+                        environment.getServicePort("mysql", 3306)));
         registry.add("spring.datasource.username", () -> "test");
         registry.add("spring.datasource.password", () -> "test");
-        
+
         registry.add("spring.data.redis.host",
-            () -> environment.getServiceHost("redis", 6379));
+                () -> environment.getServiceHost("redis", 6379));
         registry.add("spring.data.redis.port",
-            () -> environment.getServicePort("redis", 6379));
+                () -> environment.getServicePort("redis", 6379));
     }
 
     @Autowired
@@ -82,14 +78,16 @@ public class IntegrationTest {
             newAccount.setAccountNumber("TEST001");
             newAccount.setBalance(new BigDecimal("1000.00"));
 
+            log.info("Attempting to create account with data: {}", newAccount);
             ResponseEntity<Account> createResponse = restTemplate.postForEntity(
                     "/api/accounts",
                     newAccount,
                     Account.class
             );
+            log.info("Create account response status: {}, body: {}",
+                    createResponse.getStatusCode(),
+                    createResponse.getBody());
 
-            log.info("Create account response: {}", createResponse.getBody());
-            
             assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
             assertThat(createResponse.getBody()).isNotNull();
             assertThat(createResponse.getBody().getAccountNumber()).isEqualTo("TEST001");
@@ -105,7 +103,7 @@ public class IntegrationTest {
             assertThat(getResponse.getBody()).isNotNull();
             assertThat(getResponse.getBody().getAccountNumber()).isEqualTo("TEST001");
         } catch (Exception e) {
-            log.error("Test failed", e);
+            log.error("Test failed with exception", e);
             throw e;
         }
     }
@@ -175,6 +173,6 @@ public class IntegrationTest {
         );
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-        assertThat(response.getBody().getTransactionStatus()).isEqualTo(TransactionStatus.FAILED);
+        assertThat(Objects.requireNonNull(response.getBody()).getTransactionStatus()).isEqualTo(TransactionStatus.FAILED);
     }
 }

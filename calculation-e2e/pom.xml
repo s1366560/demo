@@ -8,7 +8,6 @@
         <artifactId>demo</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>calculation-e2e</artifactId>
 
     <properties>
@@ -21,6 +20,18 @@
         <dependency>
             <groupId>com.tiejun.demo</groupId>
             <artifactId>calculation-api</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tiejun.demo</groupId>
+            <artifactId>calculation-core</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tiejun.demo</groupId>
+            <artifactId>calculation-domain</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
@@ -53,7 +64,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
             <version>1.26.0</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -68,27 +78,10 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -103,5 +96,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>
