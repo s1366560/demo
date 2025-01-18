@@ -66,11 +66,10 @@ public class TransactionServiceImpl implements TransactionService {
             if (result == 1) {
                 return transactionRecord;
             }
+            throw new BizException(ErrorCode.TRANSACTION_UPDATE_ERROR);
 
-        } else {
-            throw new IllegalArgumentException("amount not enough");
         }
-        return null;
+        throw new IllegalArgumentException("amount not enough");
     }
 
     @Override

@@ -3,7 +3,8 @@ package com.tiejun.demo.contsants;
 public enum ErrorCode {
     ACCOUNT_NOT_EXIST(1, "Account Not Exist"),
     TRANSACTION_CREATE_ERROR(2, "Transaction create ERROR"),
-    TRANSACTION_NOT_EXIST(3, "Transaction Not Exist");
+    TRANSACTION_NOT_EXIST(3, "Transaction Not Exist"),
+    TRANSACTION_UPDATE_ERROR(4,"Transaction update ERROR" );
 
     private final int code;
     private final String msg;

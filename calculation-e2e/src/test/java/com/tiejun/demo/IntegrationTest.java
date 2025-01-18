@@ -1,4 +1,4 @@
-package com.tiejun.demo.e2e;
+package com.tiejun.demo;
 
 import com.tiejun.demo.vo.AccountVo;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,4 +1,4 @@
-package com.tiejun.demo.e2e;
+package com.tiejun.demo;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
