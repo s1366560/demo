@@ -123,6 +123,7 @@ testkube run testworkflow jmeter
 
 执行压力测试触发扩容后:
 
+![alt text](autoscaling2.png)
 
 
 # 性能测试报告
