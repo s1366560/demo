@@ -7,6 +7,7 @@ calculation-core 核心业务逻辑
 calculation-api 对外提供接口
 calculation-domain 业务对象定义
 calculation-e2e 集成测试
+scripts 压测脚本,弹性扩容测试脚本
 ```
 
 ## 架构图
@@ -73,42 +74,66 @@ graph TB
 
 ## 快速开始
 
-1. 启动redis
+- 启动redis
 ```
 docker-compose service redis up -d
 ```
-2. 启动mysql
+- 启动mysql
 ```
 docker-compose service mysql up -d
 ```
-3. 启动项目
+- 启动项目
 ```
 mvn spring-boot:run
 ```
-4. 执行性能测试
+- 执行性能测试
+
+如果本地执行,需要修改测试计划,将接口地址调整为本地
 
 ```
 jmeter -n -t scripts/load-test-plan.jmx -l scripts/load-test-result.jtl
 ```
-5. 执行单元测试
+
+- 执行单元测试
 ```
 mvn test
 ```
-6. Helm 安装
+
+- Helm 安装
 ```
 helm install calculation-core ./charts/calculation-core
 ```
 
+- 利用 [testkube](https://testkube.io/blog/jmeter-and-kubernetes-how-to-run-tests-efficiently-with-testkube) 执行 压力测试
+
+```
+kubeclt apply -f scripts/load-test.yaml
+testkube run testworkflow jmeter
+```
+- 
 
 # 代码覆盖率报告
 
 ![alt text](image.png)
 
-# 弹性测试报告
+# 水平扩容测试报告
 
-![alt text](image-1.png)
+为了更容易触发水平扩容条件,CPU与内存调整为 8%;
+
+![alt text](autoscaling1.png)
+
+执行压力测试触发扩容后:
+
+
 
 # 性能测试报告
+
+## 测试资源
+
+CPU: 500m
+内存: 1280Mi
+
+## 测试结果
 
 ![alt text](jmeter1.png)
 ![alt text](jmeter2.png)
