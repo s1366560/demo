@@ -1,5 +1,7 @@
 # Real-Time Balance Calculation System
 
+## [相关文档](docs/README.md)
+
 1. **目标（Objective）**：
     - 在Java中开发一个实时余额计算系统，并将其部署在云平台（AWS/GCP/Ali）上的Kubernetes（K8s）集群中，确保满足高可用性和弹性要求。
 2. **要求（Requirements）**：
