@@ -1,69 +1,69 @@
-# 项目文档
+# Project Documentation
 
-## 项目结构
+## Project Structure
 
 ```
-calculation-core 核心业务逻辑
-calculation-api 对外提供接口
-calculation-domain 业务对象定义
-calculation-e2e 集成测试
-scripts 压测脚本,弹性扩容测试脚本
+calculation-core Core business logic
+calculation-api External interfaces
+calculation-domain Business object definitions
+calculation-e2e Integration tests
+scripts Load testing scripts, elastic scaling test scripts
 ```
 
-## 架构图
+## Architecture Diagram
 ```mermaid
 graph TB
-    subgraph "API服务层 API Service Layer"
-        A1[用户API User API]
-        A2[账户API Account API]
-        A3[交易API Transaction API]
-        A4[余额API Balance API]
+    subgraph "API Service Layer"
+        A1[User API]
+        A2[Account API]
+        A3[Transaction API]
+        A4[Balance API]
     end
 
-    subgraph "服务层 Service Layer"
-        B1[用户服务 UserService]
-        B2[账户服务 AccountService]
-        B3[交易服务 TransactionService]
-        B4[余额服务 BalanceService]
+    subgraph "Service Layer"
+        B1[UserService]
+        B2[AccountService]
+        B3[TransactionService]
+        B4[BalanceService]
     end
 
-    subgraph "数据访问层 Data Access Layer"
-        C1[用户DAO UserDAO]
-        C2[账户DAO AccountDAO]
-        C3[交易DAO TransactionDAO]
-        C4[余额DAO BalanceDAO]
+    subgraph "Data Access Layer"
+        C1[UserDAO]
+        C2[AccountDAO]
+        C3[TransactionDAO]
+        C4[BalanceDAO]
     end
 
-    subgraph "缓存层 Cache Layer"
-        D1[用户缓存]
-        D2[账户缓存]
-        D3[交易缓存]
-        D4[余额缓存]
+    subgraph "Cache Layer"
+        D1[User Cache]
+        D2[Account Cache]
+        D3[Transaction Cache]
+        D4[Balance Cache]
     end
 
-    subgraph "存储层 Storage Layer"
-        E1[(MySQL主库)]
-        E2[(MySQL从库)]
-        E3[(Redis集群)]
+    subgraph "Storage Layer"
+        E1[(MySQL Master)]
+        E2[(MySQL Slave)]
+        E3[(Redis Cluster)]
     end
 
-    %% API到Service的调用关系
+    %% API to Service calls
     A1 --> B1
     A2 --> B2
     A3 --> B3
     A4 --> B4
 
-    %% Service到DAO的调用关系
+    %% Service to DAO calls
     B1 --> C1
     B2 --> C2
     B3 --> C3
     B4 --> C4
 
-    %% DAO到存储层的访问关系
+    %% DAO to Storage Layer access
     C1 & C2 & C3 & C4 --> E1
     E1 --> E2
 
-    %% 缓存访问关系
+    %% Cache access relationships
     B1 --> D1
     B2 --> D2
     B3 --> D3
@@ -72,68 +72,68 @@ graph TB
 
 ```
 
-## 快速开始
+## Quick Start
 
-- 启动redis
+- Start Redis
 ```
 docker-compose service redis up -d
 ```
-- 启动mysql
+- Start MySQL
 ```
 docker-compose service mysql up -d
 ```
-- 启动项目
+- Start the project
 ```
 mvn spring-boot:run
 ```
-- 执行性能测试
+- Run performance tests
 
-如果本地执行,需要修改测试计划,将接口地址调整为本地
+If running locally, modify the test plan to adjust the API endpoints to local addresses
 
 ```
 jmeter -n -t scripts/load-test-plan.jmx -l scripts/load-test-result.jtl
 ```
 
-- 执行单元测试
+- Run unit tests
 ```
 mvn test
 ```
 
-- Helm 安装
+- Helm installation
 ```
 helm install calculation-core ./charts/calculation-core
 ```
 
-- 利用 [testkube](https://testkube.io/blog/jmeter-and-kubernetes-how-to-run-tests-efficiently-with-testkube) 执行 压力测试
+- Use [testkube](https://testkube.io/blog/jmeter-and-kubernetes-how-to-run-tests-efficiently-with-testkube) to run load tests
 
 ```
 kubeclt apply -f scripts/load-test.yaml
 testkube run testworkflow jmeter
 ```
 
-# 代码覆盖率报告
+# Code Coverage Report
 
 ![alt text](image.png)
 
-# 水平扩容测试报告
+# Horizontal Scaling Test Report
 
-为了更容易触发水平扩容条件,CPU调整为 8%;
+To make it easier to trigger horizontal scaling conditions, CPU threshold is adjusted to 8%;
 
 ![alt text](autoscaling1.png)
 
-执行压力测试触发扩容后:
+After running load test to trigger scaling:
 
 ![alt text](autoscaling2.png)
 
 
-# 性能测试报告
+# Performance Test Report
 
-## 测试资源
+## Test Resources
 
 CPU: 500m
-内存: 1280Mi
+Memory: 1280Mi
 
-## 测试结果
+## Test Results
 
 ![alt text](jmeter1.png)
 ![alt text](jmeter2.png)
