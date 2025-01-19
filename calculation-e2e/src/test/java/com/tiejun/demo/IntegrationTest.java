@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
@@ -51,6 +52,9 @@ public class IntegrationTest {
                 environment.getServiceHost("redis", 6379),
                 environment.getServicePort("redis", 6379));
     }
+
+    @Autowired
+    RedisTemplate<String, String> redisTemplate;
 
     @DynamicPropertySource
     static void registerProperties(DynamicPropertyRegistry registry) {
@@ -93,6 +97,10 @@ public class IntegrationTest {
             assertThat(createResponse.getBody().getAccountNumber()).isEqualTo("TEST001");
             assertThat(createResponse.getBody().getBalance()).isEqualByComparingTo(new BigDecimal("1000.00"));
 
+            // redis cache
+            String cachedAccount = redisTemplate.opsForValue().get("accounts::TEST001");
+            assertThat(cachedAccount).isNotNull();
+
             // 查询账户
             ResponseEntity<Account> getResponse = restTemplate.getForEntity(
                     "/api/accounts/TEST001",
@@ -102,9 +110,9 @@ public class IntegrationTest {
             assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
             assertThat(getResponse.getBody()).isNotNull();
             assertThat(getResponse.getBody().getAccountNumber()).isEqualTo("TEST001");
-        } catch (Exception e) {
-            log.error("Test failed with exception", e);
-            throw e;
+        } finally {
+            // 清理测试数据
+            redisTemplate.delete("accounts::TEST001");
         }
     }
 

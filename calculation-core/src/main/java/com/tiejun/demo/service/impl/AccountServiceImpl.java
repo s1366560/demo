@@ -15,14 +15,14 @@ import java.math.BigDecimal;
 @Service
 public class AccountServiceImpl implements AccountService {
     private final AccountMapper accountMapper;
-
+    private static final String CACHE_PREFIX = "accounts";
     public AccountServiceImpl(AccountMapper accountMapper) {
         this.accountMapper = accountMapper;
     }
 
     @Override
     @Transactional
-    @Cacheable(key = "#account", value = "accounts")
+    @Cacheable(value = CACHE_PREFIX, key = "#account")
     public Account findByAccount(String account) {
         Account result = accountMapper.selectByAccount(account);
         if (null == result) {
@@ -33,6 +33,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional
+    @Cacheable(value = CACHE_PREFIX, key = "#accountNumber")
     public Account createAccount(String accountNumber, BigDecimal balance) {
         if (accountMapper.insert(accountNumber, balance) == 1) {
             return accountMapper.selectByAccount(accountNumber);
@@ -42,7 +43,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional
-    @CacheEvict(key = "#accountNumber", value = "accounts")
+    @CacheEvict(value = CACHE_PREFIX, key = "#accountNumber")
     public Account updateAccountBalance(String accountNumber, BigDecimal newSourceBalance) {
         Account account = accountMapper.selectByAccount(accountNumber);
         if (account == null) {

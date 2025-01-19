@@ -2,6 +2,7 @@ package com.tiejun.demo;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
         "com.tiejun.demo.config"
 })
 @MapperScan("com.tiejun.demo.mapper")
+@EnableCaching
 public class TestConfig {
 
 } 
