@@ -110,5 +110,7 @@ helm install calculation-core ./charts/calculation-core
 
 # 性能测试报告
 
-![alt text](image-2.png)
+![alt text](jmeter1.png)
+![alt text](jmeter2.png)
+
 
