@@ -1,78 +1,49 @@
-2025-01-19 18:07:44,948 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
-2025-01-19 18:07:44,960 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
-2025-01-19 18:07:44,961 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: Version 5.6.3
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: java.version=21.0.5
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: os.name=Mac OS X
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: os.arch=aarch64
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: os.version=15.1
-2025-01-19 18:07:44,963 INFO o.a.j.JMeter: file.encoding=UTF-8
-2025-01-19 18:07:44,964 INFO o.a.j.JMeter: java.awt.headless=null
-2025-01-19 18:07:44,964 INFO o.a.j.JMeter: Max memory     =1073741824
-2025-01-19 18:07:44,964 INFO o.a.j.JMeter: Available Processors =14
-2025-01-19 18:07:44,968 INFO o.a.j.JMeter: Default Locale=English (EN)
-2025-01-19 18:07:44,968 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
-2025-01-19 18:07:44,968 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
-2025-01-19 18:07:44,968 INFO o.a.j.JMeter: user.dir  =/Users/tiejunsun/Documents/projects/hsbc/demo
-2025-01-19 18:07:44,968 INFO o.a.j.JMeter: PWD       =/Users/tiejunsun/Documents/projects/hsbc/demo
-2025-01-19 18:07:44,970 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: TiejundeMacBook-Pro.local FullName: localhost
-2025-01-19 18:07:44,975 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
-2025-01-19 18:07:45,199 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
-2025-01-19 18:07:45,949 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-01-19 18:07:46,001 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-01-19 18:07:46,020 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7897
-2025-01-19 18:07:46,021 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7897
-2025-01-19 18:07:46,053 INFO o.j.r.JARSourceHTTP: Found cached repo
-2025-01-19 18:07:46,113 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7897
-2025-01-19 18:07:46,113 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.10, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
-2025-01-19 18:07:49,247 WARN o.j.r.h.StatsReporter: Failed to send repo stats
-java.net.SocketTimeoutException: Read timed out
-	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796) ~[?:?]
-	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099) ~[?:?]
-	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489) ~[?:?]
-	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483) ~[?:?]
-	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:160) ~[?:?]
-	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:111) ~[?:?]
-	at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1506) ~[?:?]
-	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1421) ~[?:?]
-	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:455) ~[?:?]
-	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:426) ~[?:?]
-	at org.apache.http.conn.ssl.SSLSocketFactory.createLayeredSocket(SSLSocketFactory.java:570) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.conn.ssl.SSLSocketFactory.createLayeredSocket(SSLSocketFactory.java:450) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.conn.DefaultClientConnectionOperator.updateSecureConnection(DefaultClientConnectionOperator.java:220) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.conn.ManagedClientConnectionImpl.layerProtocol(ManagedClientConnectionImpl.java:419) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.client.DefaultRequestDirector.establishRoute(DefaultRequestDirector.java:808) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:609) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:440) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:835) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56) ~[httpclient-4.5.14.jar:4.5.14]
-	at org.jmeterplugins.repository.JARSourceHTTP.execute(JARSourceHTTP.java:499) ~[jmeter-plugins-manager-1.10.jar:?]
-	at org.jmeterplugins.repository.JARSourceHTTP.execute(JARSourceHTTP.java:494) ~[jmeter-plugins-manager-1.10.jar:?]
-	at org.jmeterplugins.repository.JARSourceHTTP.reportStats(JARSourceHTTP.java:451) ~[jmeter-plugins-manager-1.10.jar:?]
-	at org.jmeterplugins.repository.http.StatsReporter.run(StatsReporter.java:24) [jmeter-plugins-manager-1.10.jar:?]
-2025-01-19 18:07:55,372 INFO o.a.j.s.FileServer: Default base='/Users/tiejunsun/Documents/projects/hsbc/demo'
-2025-01-19 18:07:55,373 INFO o.a.j.g.a.Load: Loading file: /Users/tiejunsun/Documents/projects/hsbc/demo/scripts/load-test-plan.jmx
-2025-01-19 18:07:55,373 INFO o.a.j.s.FileServer: Set new base='/Users/tiejunsun/Documents/projects/hsbc/demo/scripts'
-2025-01-19 18:07:55,437 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
-2025-01-19 18:07:55,440 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
-2025-01-19 18:07:55,441 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
-2025-01-19 18:07:55,441 INFO o.a.j.s.SaveService: Loading file: /Users/tiejunsun/Documents/projects/hsbc/demo/scripts/load-test-plan.jmx
-2025-01-19 18:07:55,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-19 18:07:55,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-19 18:07:55,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-19 18:07:55,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-19 18:07:55,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
-2025-01-19 18:07:55,469 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
-2025-01-19 18:07:55,563 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
-2025-01-19 18:07:55,563 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
-2025-01-19 18:07:55,563 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
-2025-01-19 18:07:55,563 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
-2025-01-19 18:07:55,597 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-01-19 18:07:55,604 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
-2025-01-19 18:07:55,631 INFO o.a.j.s.FileServer: Set new base='/Users/tiejunsun/Documents/projects/hsbc/demo/scripts'
+2025-01-19 18:32:31,045 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2025-01-19 18:32:31,058 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
+2025-01-19 18:32:31,058 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
+2025-01-19 18:32:31,061 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: Version 5.6.3
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: java.version=21.0.5
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: os.name=Mac OS X
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: os.arch=aarch64
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: os.version=15.1
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: file.encoding=UTF-8
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: java.awt.headless=null
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: Max memory     =1073741824
+2025-01-19 18:32:31,062 INFO o.a.j.JMeter: Available Processors =14
+2025-01-19 18:32:31,067 INFO o.a.j.JMeter: Default Locale=English (EN)
+2025-01-19 18:32:31,067 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2025-01-19 18:32:31,068 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
+2025-01-19 18:32:31,068 INFO o.a.j.JMeter: user.dir  =/Users/tiejunsun/Documents/projects/hsbc/demo
+2025-01-19 18:32:31,068 INFO o.a.j.JMeter: PWD       =/Users/tiejunsun/Documents/projects/hsbc/demo
+2025-01-19 18:32:31,069 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: TiejundeMacBook-Pro.local FullName: localhost
+2025-01-19 18:32:31,076 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2025-01-19 18:32:31,322 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2025-01-19 18:32:32,459 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.action.Command], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-01-19 18:32:32,526 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.gui.plugin.MenuCreator], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-01-19 18:32:32,555 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7897
+2025-01-19 18:32:32,557 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7897
+2025-01-19 18:32:32,597 INFO o.j.r.JARSourceHTTP: Found cached repo
+2025-01-19 18:32:32,674 INFO o.j.r.JARSourceHTTP: Using proxy 127.0.0.1:7897
+2025-01-19 18:32:32,674 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.10, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
+2025-01-19 18:32:40,190 INFO o.a.j.s.FileServer: Default base='/Users/tiejunsun/Documents/projects/hsbc/demo'
+2025-01-19 18:32:40,191 INFO o.a.j.g.a.Load: Loading file: /Users/tiejunsun/Documents/projects/hsbc/demo/scripts/load-test-plan.jmx
+2025-01-19 18:32:40,191 INFO o.a.j.s.FileServer: Set new base='/Users/tiejunsun/Documents/projects/hsbc/demo/scripts'
+2025-01-19 18:32:40,264 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-01-19 18:32:40,268 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-01-19 18:32:40,268 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-01-19 18:32:40,269 INFO o.a.j.s.SaveService: Loading file: /Users/tiejunsun/Documents/projects/hsbc/demo/scripts/load-test-plan.jmx
+2025-01-19 18:32:40,307 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-01-19 18:32:40,307 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-01-19 18:32:40,307 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-01-19 18:32:40,307 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-01-19 18:32:40,307 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-01-19 18:32:40,307 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-01-19 18:32:40,429 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2025-01-19 18:32:40,429 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2025-01-19 18:32:40,429 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2025-01-19 18:32:40,429 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2025-01-19 18:32:40,477 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.ResultRenderer], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-01-19 18:32:40,486 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.10.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.visualizers.RequestView], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-01-19 18:32:40,522 INFO o.a.j.s.FileServer: Set new base='/Users/tiejunsun/Documents/projects/hsbc/demo/scripts'

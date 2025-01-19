@@ -110,7 +110,6 @@ helm install calculation-core ./charts/calculation-core
 kubeclt apply -f scripts/load-test.yaml
 testkube run testworkflow jmeter
 ```
-- 
 
 # 代码覆盖率报告
 
@@ -118,7 +117,7 @@ testkube run testworkflow jmeter
 
 # 水平扩容测试报告
 
-为了更容易触发水平扩容条件,CPU与内存调整为 8%;
+为了更容易触发水平扩容条件,CPU调整为 8%;
 
 ![alt text](autoscaling1.png)
 
